@@ -1,3 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root@Mysql8.0
+    username: root
 cas:
   authn:
     accept:
@@ -11,6 +17,20 @@ cas:
         field-disabled: user_status_disabled
         field-expired: pwd_expired
         sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where user_name = ?;
+        field-password: password
+        password-encoder:
+          type: BCRYPT
+          strength: 10
+      query[1]:
+        name: queryDatabaseByEmailAuthenticationHandler
+        credential-criteria: ^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
+        driver-class: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
+        user: root
+        password: root@Mysql8.0
+        field-disabled: user_status_disabled
+        field-expired: pwd_expired
+        sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where email = ?;
         field-password: password
         password-encoder:
           type: BCRYPT

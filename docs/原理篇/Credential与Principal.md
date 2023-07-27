@@ -1,0 +1,24 @@
+# Credential与Principal
+## Credential
+Credential 简单理解为认证的主体，即通过什么方式来认证。比如：用户名+密码，手机号+验证码，Token等。
+
+org.apereo.cas.configuration.model.core.authentication.AuthenticationPolicyProperties.sourceSelectionEnabled
+
+UsernamePasswordCredential带有source字段，设计目的在于可根据不同的source来选择不同的AuthenticationHandler
+
+如果同时支持用户名/密码登录，手机号验证码登录，应该用哪个Credential呢？
+或者说用户名/密码登录时用UsernamePasswordCredential，手机号验证码登录用另一个Credential？
+
+org.apereo.cas.configuration.model.core.authentication.AuthenticationPolicyProperties.sourceSelectionEnabled
+
+UsernamePasswordCredential带有source字段，设计目的在于可根据不同的source来选择不同的AuthenticationHandler
+（也可通过Credential的类型来选择不同的AuthenticationHandler）
+
+如果同时支持用户名/密码登录，手机号验证码登录，应该用哪个Credential呢？
+或者说用户名/密码登录时用UsernamePasswordCredential，手机号验证码登录用另一个Credential
+
+一次认证可以提供多个 Credential 吗？什么场景？
+
+## Principal
+类似于Credential，只不过认证前是Credential，认证后是Principal。都同样以id代表。Principal还可带一堆属性。
+比如用户以用户名&密码作为Credential认证登录，登录成功后生成以用户名为id的Principle，同时也可查出用户的一些信息作为属性，这些属性可用于前端展示（比如上次登录时间）。

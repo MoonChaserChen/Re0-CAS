@@ -1,0 +1,15 @@
+cas:
+  authn:
+    accept:
+      enabled: false
+    jdbc:
+      query[0]:
+        driver-class: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
+        user: root
+        password: root@Mysql8.0
+        sql: select * from user_base where user_name = ?
+        field-password: password
+        password-encoder:
+          type: BCRYPT
+          strength: 10

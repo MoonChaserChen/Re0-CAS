@@ -52,3 +52,9 @@ cas:
                     type: BCRYPT
                     strength: 10
                 order: 2
+    ticket:
+        registry:
+            redis:
+                host: 127.0.0.1
+                port: 6379
+                database: 0

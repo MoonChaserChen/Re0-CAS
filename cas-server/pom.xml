@@ -24,11 +24,19 @@
             <type>war</type>
         </dependency>
 
+        <!--cas-support-->
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-jdbc</artifactId>
             <version>${cas.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-redis-ticket-registry</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <!--cas-core-->
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-api-authentication</artifactId>

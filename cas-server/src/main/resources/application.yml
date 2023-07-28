@@ -21,6 +21,7 @@ cas:
         password-encoder:
           type: BCRYPT
           strength: 10
+        order: 3
       query[1]:
         name: emailPwdAuthenticationHandler
         credential-criteria: ^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
@@ -35,3 +36,19 @@ cas:
         password-encoder:
           type: BCRYPT
           strength: 10
+        order: 1
+      query[2]:
+        name: mobilePwdAuthenticationHandler
+        credential-criteria: ^1[0-9]{10}$
+        driver-class: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
+        user: root
+        password: root@Mysql8.0
+        field-disabled: user_status_disabled
+        field-expired: pwd_expired
+        sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where mobile = ?;
+        field-password: password
+        password-encoder:
+          type: BCRYPT
+          strength: 10
+        order: 2

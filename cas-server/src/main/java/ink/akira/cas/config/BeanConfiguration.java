@@ -2,7 +2,7 @@ package ink.akira.cas.config;
 
 import ink.akira.cas.EmailPrincipalResolver;
 import ink.akira.cas.JdbcService;
-import org.apache.commons.lang3.StringUtils;
+import ink.akira.cas.MobilePrincipalResolver;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
 import org.apereo.cas.authentication.principal.PrincipalResolver;
@@ -17,6 +17,7 @@ import java.util.Collection;
 @Configuration
 public class BeanConfiguration {
     public static final String EMAIL_AUTHENTICATION_HANDLER = "emailPwdAuthenticationHandler";
+    public static final String MOBILE_AUTHENTICATION_HANDLER = "mobilePwdAuthenticationHandler";
 
     @Bean
     public JdbcService jdbcService(DataSource dataSource) {
@@ -29,13 +30,26 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public PrincipalResolver mobilePrincipalResolver(JdbcService jdbcService) {
+        return new MobilePrincipalResolver(jdbcService);
+    }
+
+    @Bean
     public AuthenticationEventExecutionPlanConfigurer jdbcAuthenticationEventExecutionPlanConfigurer(
             @Qualifier("jdbcAuthenticationHandlers") final Collection<AuthenticationHandler> jdbcAuthenticationHandlers,
-            @Qualifier("emailPrincipalResolver") final PrincipalResolver emailPrincipalResolver) {
+            @Qualifier("emailPrincipalResolver") final PrincipalResolver emailPrincipalResolver,
+            @Qualifier("mobilePrincipalResolver") final PrincipalResolver mobilePrincipalResolver) {
         return plan -> jdbcAuthenticationHandlers.forEach(h -> {
-                    PrincipalResolver principalResolver = StringUtils.equals(EMAIL_AUTHENTICATION_HANDLER, h.getName()) ? emailPrincipalResolver : new EchoingPrincipalResolver();
-                    plan.registerAuthenticationHandlerWithPrincipalResolver(h, principalResolver);
-                }
-        );
+            switch (h.getName()) {
+                case EMAIL_AUTHENTICATION_HANDLER:
+                    plan.registerAuthenticationHandlerWithPrincipalResolver(h, emailPrincipalResolver);
+                    break;
+                case MOBILE_AUTHENTICATION_HANDLER:
+                    plan.registerAuthenticationHandlerWithPrincipalResolver(h, mobilePrincipalResolver);
+                    break;
+                default:
+                    plan.registerAuthenticationHandlerWithPrincipalResolver(h, new EchoingPrincipalResolver());
+            }
+        });
     }
 }

@@ -16,6 +16,7 @@ public class JdbcService {
     private final DataSource dataSource;
 
     public static final String QUERY_USERNAME_BY_EMAIL = "select user_name from user_base where email = ?";
+    public static final String QUERY_USERNAME_BY_MOBILE = "select user_name from user_base where mobile = ?";
 
     public JdbcService(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -28,6 +29,15 @@ public class JdbcService {
             return jdbcTemplate.queryForObject(QUERY_USERNAME_BY_EMAIL, String.class, email);
         } catch (DataAccessException e) {
             LOGGER.error("queryUsernameByEmail failed.", e);
+            return null;
+        }
+    }
+
+    public String queryUsernameByMobile(String mobile) {
+        try {
+            return jdbcTemplate.queryForObject(QUERY_USERNAME_BY_MOBILE, String.class, mobile);
+        } catch (DataAccessException e) {
+            LOGGER.error("queryUsernameByMobile failed.", e);
             return null;
         }
     }

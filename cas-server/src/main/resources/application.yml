@@ -22,7 +22,7 @@ cas:
           type: BCRYPT
           strength: 10
       query[1]:
-        name: queryDatabaseByEmailAuthenticationHandler
+        name: emailPwdAuthenticationHandler
         credential-criteria: ^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
         driver-class: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8

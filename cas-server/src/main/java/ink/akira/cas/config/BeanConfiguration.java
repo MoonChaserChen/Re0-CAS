@@ -16,7 +16,7 @@ import java.util.Collection;
 
 @Configuration
 public class BeanConfiguration {
-    public static final String EMAIL_AUTHENTICATION_HANDLER = "queryDatabaseByEmailAuthenticationHandler";
+    public static final String EMAIL_AUTHENTICATION_HANDLER = "emailPwdAuthenticationHandler";
 
     @Bean
     public JdbcService jdbcService(DataSource dataSource) {

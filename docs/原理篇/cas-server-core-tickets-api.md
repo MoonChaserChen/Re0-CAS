@@ -161,7 +161,7 @@ cas.ticket.st.time-to-kill-in-seconds=10
 同样先看Service级别的配置，再看全局配置。
 
 ```
-# 配置有很多级，简单情况用这一级就可以。TGT默认creationTime后8小时内且lastTimeUsed后2小时内有效。
+# 配置有很多级，简单情况用这一级就可以。TGT默认creationTime后8小时后失效或lastTimeUsed后2小时后失效。
 # 这种配置格式可参考 java.time.Duration#parse，也可以直接配置为数字（单位：秒）
 cas.ticket.tgt.primary.max-time-to-live-in-seconds=PT8H
 cas.ticket.tgt.primary.time-to-kill-in-seconds=PT2H

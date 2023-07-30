@@ -58,3 +58,7 @@ cas:
                 host: 127.0.0.1
                 port: 6379
                 database: 0
+        tgt:
+            primary:
+                max-time-to-live-in-seconds: PT5M
+                time-to-kill-in-seconds: PT2M

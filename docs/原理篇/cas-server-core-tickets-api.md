@@ -146,6 +146,9 @@ class ST {
 AuthenticatedServicesAwareTicketGrantingTicket::Service2 -right-> ST::Service
 ```
 
+## ExpirationPolicy
+https://apereo.github.io/cas/6.6.x/ticketing/Configuring-Ticket-Expiration-Policy.html
+
 ### ST的ExpirationPolicy
 `org.apereo.cas.ticket.factory.DefaultServiceTicketFactory.determineExpirationPolicyForService`  
 先看Service级别配置，再看全局配置。
@@ -166,3 +169,7 @@ cas.ticket.st.time-to-kill-in-seconds=10
 cas.ticket.tgt.primary.max-time-to-live-in-seconds=PT8H
 cas.ticket.tgt.primary.time-to-kill-in-seconds=PT2H
 ```
+
+## JWT ST
+参见： https://apereo.github.io/cas/6.6.x/installation/Configure-ServiceTicket-JWT.html  
+ST的有效性是由CAS Server验证的；JWT ST的有效性是由Client来验证的（CAS Server已经提前验证了ST了）。

@@ -2,6 +2,7 @@ import os
 from shutil import copyfile
 import codecs
 import re
+from urllib.parse import quote
 
 suffix = ".md"
 gen_file_name = "summary.md"
@@ -29,7 +30,7 @@ def print_file(c_dir, depth, sidebar_file, readme_file):
         else:
             if suffix in f and f not in ignore_files:
                 f_n = os.path.splitext(f)[0]
-                content = "\t" * depth + "- [" + f_n + "](/" + re_f[2:] + ")\n"
+                content = "\t" * depth + "- [" + f_n + "](/" + quote(re_f[2:]) + ")\n"
                 sidebar_file.write(content)
                 readme_file.write(content)
 

@@ -39,7 +39,7 @@
                 diagram.drawSVG('sequence', {theme: 'simple'});
               })();
               return '<div id="sequence"></div>';
-            } else if (lang === "dot") {
+            } else if (lang === "plantuml" && code.startsWith("digraph")) {
               return (
                  '<div class="viz">'+ Viz(code, "SVG")+'</div>'
               );

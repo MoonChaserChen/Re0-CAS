@@ -9,7 +9,7 @@ gen_file_name = "summary.md"
 doc_path = "docs"
 read_me_file = "README.md"
 cname_file = "CNAME"
-ico_file = 'http://image.akira.ink/blog/favicon.ico'
+ico_file = 'http://file.akira.ink/docimgs/favicon.ico'
 
 ignore_files = [gen_file_name, ".git", read_me_file, "images"]
 

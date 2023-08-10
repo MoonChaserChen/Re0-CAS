@@ -62,7 +62,8 @@ BaseRegisteredService <|-- BaseWebBasedRegisteredService
 | RegisteredServiceProperty                             | RegisteredService | Service的其它配置属性                                                                                                                    |
 
 ### RegisteredServiceMatchingStrategy
-用于Service匹配，判断是不是同一个
+用于Service匹配，判断是不是同一个。
+
 | 策略                                            | 说明               |
 |-----------------------------------------------|------------------|
 | LiteralRegisteredServiceMatchingStrategy      | 全文匹配，可忽略大小写      |

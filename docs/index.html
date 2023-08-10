@@ -39,11 +39,11 @@
                 diagram.drawSVG('sequence', {theme: 'simple'});
               })();
               return '<div id="sequence"></div>';
-            } /*else if (lang === "plantuml" && code.startsWith("digraph")) {
+            } else if (lang === "plantuml" && code.startsWith("digraph")) {
               return (
                  '<div class="viz">'+ Viz(code, "SVG")+'</div>'
               );
-            }*/ else if (lang === "mermaid") {
+            } else if (lang === "mermaid") {
               return (
                 '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
               );
@@ -104,8 +104,8 @@
   <!-- mermaid erquirements -->
   <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <!--graphviz-->
-  <!--<script src="//cdn.bootcss.com/viz.js/1.8.0/viz.js"></script>
-  <script type="text/javascript">mermaid.initialize({ startOnLoad: false });</script>-->
+  <script src="//cdn.bootcss.com/viz.js/1.8.0/viz.js"></script>
+  <script type="text/javascript">mermaid.initialize({ startOnLoad: false });</script>
   <!--plantuml-->
   <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
 </body>

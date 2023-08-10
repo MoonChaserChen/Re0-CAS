@@ -1,0 +1,10 @@
+on:
+  # 推送到master分支开始打包
+  push:
+    branches:
+      - master
+
+  jobs:
+    udf-job-name:
+      steps:
+        - run: echo "Hello"

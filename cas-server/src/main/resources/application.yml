@@ -2,7 +2,7 @@ spring:
     datasource:
         url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
         driver-class-name: com.mysql.cj.jdbc.Driver
-        password: root@Mysql8.0
+        password: root
         username: root
 cas:
     authn:
@@ -13,7 +13,7 @@ cas:
                 driver-class: com.mysql.cj.jdbc.Driver
                 url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
                 user: root
-                password: root@Mysql8.0
+                password: root
                 field-disabled: user_status_disabled
                 field-expired: pwd_expired
                 sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where user_name = ?;
@@ -28,7 +28,7 @@ cas:
                 driver-class: com.mysql.cj.jdbc.Driver
                 url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
                 user: root
-                password: root@Mysql8.0
+                password: root
                 field-disabled: user_status_disabled
                 field-expired: pwd_expired
                 sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where email = ?;
@@ -43,7 +43,7 @@ cas:
                 driver-class: com.mysql.cj.jdbc.Driver
                 url: jdbc:mysql://localhost:3306/akira?useUnicode=true&characterEncoding=utf8
                 user: root
-                password: root@Mysql8.0
+                password: root
                 field-disabled: user_status_disabled
                 field-expired: pwd_expired
                 sql: select password, password_expire_time is not null and password_expire_time < now() as pwd_expired, user_status = 2 as user_status_disabled from user_base where mobile = ?;
@@ -57,7 +57,7 @@ cas:
             redis:
                 host: 127.0.0.1
                 port: 6379
-                database: 0
+                database: 5
         tgt:
             primary:
                 max-time-to-live-in-seconds: PT5M

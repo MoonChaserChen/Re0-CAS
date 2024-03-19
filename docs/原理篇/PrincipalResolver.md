@@ -60,6 +60,3 @@ public interface PrincipalResolutionExecutionPlan {
     Collection<PrincipalResolver> getRegisteredPrincipalResolvers();
 }
 ```
-### PrincipalResolver与PrincipalNameTransformer
-- PrincipalNameTransformer仅进行id处理，通常做一些大小写转换、增加前后缀操作等
-- PrincipalResolver可进行id及属性处理，且通常查询DB等进行id转换。同时PrincipalResolver可包括PrincipalNameTransformer步骤。
